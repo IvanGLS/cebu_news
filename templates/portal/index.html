@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+      <title>Breaking News</title>
+{% endblock %}
+
+{% block content %}
+  <h1>Breaking News</h1>
+  {% if news_list %}
+  <table class="table">
+        <tr>
+          <th>Author</th>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Created time</th>
+          <th>Comments</th>
+        </tr>
+        {% for news in news_list %}
+        <tr>
+          <td>
+              {{ news.title }}
+          </td>
+{#          <td>#}
+{#            <a href="{% url "blog:post-detail" pk=post.id %} ">{{ post.title }}</a>#}
+{#          </td>#}
+          <td>
+              {{ news.content }}
+          </td>
+          <td>
+              {{ news.published_date }}
+          </td>
+          <td>
+              {{ news.category.category }}
+          </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+    {% else %}
+        <p>There are no any posts.</p>
+    {% endif %}
+
+{% endblock %}

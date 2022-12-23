@@ -75,13 +75,13 @@
 			6.7.3. FAQ's
 			...
 -------------------------------------------------------------------*/
-{% load static %}
+
 /** 1. Import vendor **/
 /** 1.1. Vendor **/
 /** 1.1.1.	Google fonts **/
 @import url(https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Roboto+Condensed:300,400,700|Lato:400,700,300,900|Oswald:400,300,700|Roboto:300,400,700,500|Open+Sans:300,400,600,700,800|Montserrat:400,700);
 /** 1.1.2.	Icon Fonts **/
-@import url("../static/sass/components/Vendor/font-awesome/font-awesome.min.css");
+@import url("../sass/components/Vendor/font-awesome/font-awesome.min.css");
 @import url("../sass/components/Vendor/simple-line-icon/css/simple-line-icons.css");
 @import url("../sass/components/Vendor/pe-icon-7-stroke/css/pe-icon-7-stroke.css");
 @import url("../sass/components/Vendor/pe-icon-7-stroke/css/helper.css");
@@ -8907,7 +8907,7 @@ nav.pagination .next:hover i, nav.pagination .prev:hover i {
 
 .post-item .lable {
   display: inline-block;
-  width: 60px;
+  width: 80px;
   height: 20px;
   font: 400 12px/20px "Lato";
   color: #fff;

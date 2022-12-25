@@ -1,9 +1,11 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
 class Redactor(AbstractUser):
+    image = models.ImageField(upload_to="media/%Y/%m/%d/", null=True)
     years_of_experience = models.IntegerField(
         default=1,
         validators=[
@@ -28,17 +30,33 @@ class News(models.Model):
     content = models.CharField(max_length=30000)
     location = models.CharField(max_length=20, null=True)
     published_date = models.DateTimeField(auto_now_add=True)
-    publishers = models.ManyToManyField(Redactor,
-                                        related_name="news",
-                                        )
+    most_popular = models.BooleanField(default=False)
+    publishers = models.ForeignKey(Redactor,
+                                   on_delete=models.CASCADE,
+                                   )
     category = models.ForeignKey(Category,
                                  on_delete=models.CASCADE,
                                  )
+    image = models.ImageField(upload_to="media/%Y/%m/%d/")
+
+    class Meta:
+        ordering = ["-published_date"]
+
+    def __str__(self):
+        return "{}".format(self.title)
+
+
+class Comments(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE,)
+    post = models.ForeignKey(News,
+                             on_delete=models.CASCADE,
+                             related_name="comments", )
     created_time = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to="featured_image/%Y/%m/%d/")
+    content = models.CharField(max_length=255)
 
     class Meta:
         ordering = ["-created_time"]
 
     def __str__(self):
-        return "{}".format(self.title)
+        return "{}".format(self.content)

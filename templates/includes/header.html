@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static %}
+
+<header id="header" class="header-v3 header-v4">
+    {% if request.path == "/" %}
+    <div class="search">
+        <form class="form-search" action="#" method="get" accept-charset="utf-8">
+            {{ search_form }}
+            <button class="button" title="Search" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    {% endif %}
+    <div id="topbar">
+        <div class="container">
+            <div class="float-left">
+              {% if request.user.is_authenticated %}
+                <img class="img-circle img-user" src="{{ request.user.image.url }}" alt="images">
+                <h3>Current User :</h3>
+                <p>{{ request.user.username }}</p>
+                <a href="{% url "portal:redactor-detail" pk=request.user.id %}" class="btn">
+                User panel
+                </a>
+                <a href="{% url "logout" %}" class="btn">
+                logout
+                </a>
+              {% else %}
+                <a href="{% url "login" %}">login</a>
+              {% endif %}
+            </div>
+            <div class="float-right">
+              <div>
+
+              </div>
+                <div class="social">
+                    <a href="#" title="title"><i class="fa fa-facebook"></i></a>
+                    <a href="#" title="title"><i class="fa fa-twitter"></i></a>
+                    <a href="#" title="title"><i class="fa fa-google-plus"></i></a>
+                    <a href="#" title="title"><i class="fa fa-rss"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- End container -->
+    </div>
+    <div class="header-top">
+            <div class="container">
+            <div class="box float-left">
+                <p class="icon-menu-mobile"><i class="fa fa-bars" ></i></p>
+                <div class="logo"><a href="/" title="Uno">
+                <img src="{% static "images/logonew.png" %}" alt="Cebu-site-Logo">
+                </a></div>
+                <div class="logo-mobile"><a href="#" title="Xanadu"><img src="{% static 'images/logonew.png' %}" alt="Cebu-site-Logo"></a></div>
+    <div class="box-right social-mobile">
+                    <div class="social">
+                        <a href="#" title="title"><i class="fa fa-facebook"></i></a>
+                        <a href="#" title="title"><i class="fa fa-twitter"></i></a>
+                        <a href="#" title="title"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" title="title"><i class="fa fa-rss"></i></a>
+                    </div>
+                    <div class="search dropdown" data-toggle="modal" data-target=".bs-example-modal-lg" style="display:none;">
+                        <i class="icon"></i>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- End container -->
+        </div>
+        <!-- End header-top -->
+
+</header>

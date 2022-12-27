@@ -1,10 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  {% load static %}
+<div class="container space-20 space-padding-tb-20">
+     <ul class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">"{{ news.title }}"</li>
+    </ul>
+</div>
+  <div class="row">
+      <div class="col-md-8">
+          <div class="single-post">
+              <div class="blog-post-item cat-1 box">
+                  <div class="blog-post-images">
+                      <a class="hover-images" title="Post"><img class="img-responsive" src="{{ news.image.url }}" alt=""></a>
+                  </div>
+                  <div class="content">
+                      <h3>{{ news.title }}</h3>
+                      <div class="tag">
+                          <p class="label">{{ news.category.category }}</p>
+                          <p class="date"><i class="fa fa-clock-o"></i>{{ news.published_date }}</p>
+                          <a class="comments" href="#anchor comments" title="comments"><i class="fa fa-comments"></i>{{ news.comments.count }}</a>
+                      </div>
+                      <p>{{ news.content }}</p>
+                  <div class="box-user space-padding-tb-40">
+                      <div class="box">
+                          <div class="avatar">
+                            {% if news.publishers.image.url %}
+                              <img class="img-responsive" src="{{ news.publishers.image.url }}" alt="avatar">
+                            {% else %}
+                            none
+                            {% endif %}
+                          </div>
+                          <div class="text">
+                              <h3>{{ news.publishers.first_name }} {{ news.publishers.last_name }} <span class="user-level">Author</span></h3>
+                              <p>{{ news.publishers.bio }}</p>
+
+                          </div>
+                      </div>
+                  </div>
+                  <!-- End box-user -->
+                      <h3 id="anchor comments">{{ news.comments.count }} COMMENTS</h3>
+                  </div>
+                  <!-- End title -->
+                  {% if news.comments.all %}
+                    {% for comment in news.comments.all %}
+                  <div class="panel box float-left space-40" id="media-object">
+                  <div class="panel-body">
+                      <ul class="media-list">
+                          <li class="media">
+                              <a class="pull-left" href="#">
+                                 <img class="media-object img-circle" src="{{ comment.user.image.url }}" alt="images">
+                              </a>
+                              <div class="media-body">
+                                  <div class="text">
+                                      <h3>{{ comment.user.first_name }} {{ comment.user.last_name }}</h3>
+                                      <p>{{ comment.content }}</p>
+                                      <p class="date">{{ comment.created_time }}</p>
+                                  </div>
+                              </div>
+                              <!-- End media body -->
+                          </li>
+                      </ul>
+                  </div>
+                    {% endfor %}
+                  {% endif %}
+                  </div>
+                  {% if request.user.is_authenticated %}
+                  <div class="title-v1">
+                      <h3>LEAVE A COMMENT</h3>
+                  </div>
+                      <form class="form-control" action="" id="add_form" method="post">
+                          <div class="form-group">
+                              {% csrf_token %}
+                              {{ form.as_p }}
+                              <input type="hidden" name="topic" value="{{ news.id }}">
+                          </div>
+                          <button form="add_form" type="submit" class="button">Post Comment</button>
+                      </form>
+                  {% else %}
+                    <h3 style="font-size: large; color: red">Only registered and authorized users can leave comments</h3>
+                  {% endif %}
+          </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+{% endblock %}

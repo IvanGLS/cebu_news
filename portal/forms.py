@@ -2,8 +2,15 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.forms import Textarea
 
-from portal.models import News
+from portal.models import News, Comments
+
+
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = News
+        exclude = ["publishers"]
 
 
 class NewsSearchForm(forms.Form):
@@ -13,3 +20,21 @@ class NewsSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by news..."})
     )
+
+
+class CommentsForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = ("content",)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs["class"] = "form-control"
+        self.fields["content"].widget = Textarea(attrs={"rows": 7})
+
+
+class NewsUpdateForm(forms.ModelForm):
+    class Meta:
+        model = News
+        exclude = ["publishers"]

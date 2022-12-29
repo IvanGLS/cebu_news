@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+
+{% block content %}
+  {% load static %}
+<div class="col-md-8">
+  <ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li class="active">Archive by "{{ redactor.username }}"</li>
+  </ul>
+  <div class="single-post">
+    <div class="blog-post-item cat-1 box">
+        <div class="box-user space-30">
+            <div class="box">
+                <div class="avatar">
+                    <img class="img-responsive" src="{{ redactor.image.url }}" alt="avatar">
+                </div>
+                <div class="text">
+                    <h3>{{ redactor.first_name }} {{ redactor.last_name }}<span class="user-level">Author</span></h3>
+                    <p>{{ redactor.bio }}</p>
+                    <a href="{% url 'portal:news-create' %}" class="btn btn-primary link-to-page">
+                      Create News
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="title-v1 box">
+            <h3>POST BY : <b>{{ redactor.first_name }} {{ redactor.last_name }}</b></h3>
+        </div>
+        <!-- End title -->
+        <div class="row">
+          <div class="row col-md-8">
+            {% for news in redactor.news.all %}
+              <div class="post-item ver3 cat-1 overlay space-30 redactor-news">
+                <div class="wrap-images">
+                  <a class="images" href="{% url 'portal:news-detail' pk=news.id %}" title="images"><img class='img-responsive' src="{{ news.image.url }}" alt="images"></a>
+              </div>
+              <div class="text">
+                  <h2><a href="{% url 'portal:news-detail' pk=news.id %}" title="title">{{ news.title }}</a></h2>
+                  <div class="tag">
+                      <span class="lable">Social</span>
+                      <p class="date"><i class="fa fa-clock-o"></i>{{ news.published_date }}</p>
+                      <a class="comments" title="comments"><i class="fa fa-comments"></i>{{ news.comments.count }}</a>
+                  </div>
+                      <p>{{ news.content|truncatewords:30 }}</p>
+                      <a class="read-more" href="{% url 'portal:news-detail' pk=news.id %}" title="read more">read more</a>
+                      {% if request.user.is_authenticated %}
+                      <a style="color: gray" href="{% url 'portal:news-update' pk=news.id %}">
+                        Update
+                      </a>
+                      <a style="color: red"
+                        href="{% url 'portal:news-delete' pk=news.id %}">
+                        Delete
+                      </a>
+                      {% endif %}
+                  </div>
+              </div>
+              {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

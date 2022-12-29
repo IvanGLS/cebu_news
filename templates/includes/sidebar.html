@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<aside class="widget popular">
+    <h3 class="widget-title">MOST POPULAR</h3>
+    <div class="content">
+        {% for news in news_list.all %}
+          {% if news.most_popular %}
+        <div class="post-item ver2">
+            <a class="images" href="{% url 'portal:news-detail' pk=news.id %}" title="images">
+              <img class='img-responsive' src="{{ news.image.url }}" alt="images"></a>
+            <div class="text">
+                <h2><a href="{% url 'portal:news-detail' pk=news.id %}" title="title">{{ news.title }}</a></h2>
+                <div class="tag">
+                    <p class="date"><i class="fa fa-clock-o"></i>{{ news.published_date }}</p>
+                    <a class="comments" href="{% url 'portal:news-detail' pk=news.id %}#anchor comments" title="comments"><i class="fa fa-comments"></i>{{ news.comments.count }}</a>
+                </div>
+            </div>
+        </div>
+          {% endif %}
+        {% endfor %}
+    </div>
+
+</aside>

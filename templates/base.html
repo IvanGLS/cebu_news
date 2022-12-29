@@ -1,18 +1,18 @@
  <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
     <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'vendor/owl-slider.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'vendor/settings.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'vendor/custombox.min.css' %}"/>
-        <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
       <!-- Title -->
       {% block title %}
       <title>Breaking News</title>
@@ -22,15 +22,24 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="Breaking News">
-
   </head>
 
 <body class="ln-fullpage" data-navigation="true">
-    <div class="container-fluid">
-                {% block content %}{% endblock %}
-{#                {% block pagination %}#}
-{#                  {% include "includes/pagination.html" %}#}
-{#                {% endblock %}#}
-    </div>
+  <div class="wrappage">
+    {% block header %}
+      {% include "includes/header.html" %}
+    {% endblock %}
+  </div>
+  <div class="main-block container-fluid">
+    {% block content %}{% endblock %}
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock %}
+  </div>
 </body>
+<footer id="footer" class="footer-v2 footer-v3">
+  {% block footer %}
+    {% include "includes/footer.html" %}
+  {% endblock %}
+</footer>
 </html>

@@ -1,11 +1,13 @@
 from django.urls import path
 
 from .views import (
+    comment_remove,
     NewsListView,
     NewsDetailView,
     RedactorDetailView,
     NewsCreateView,
     NewsUpdateView,
+    NewsDeleteView,
 )
 
 
@@ -25,6 +27,16 @@ urlpatterns = [
         "news/<int:pk>/update/",
         NewsUpdateView.as_view(),
         name="news-update",
+    ),
+    path(
+        "news/<int:pk>/delete/",
+        NewsDeleteView.as_view(),
+        name="news-delete",
+    ),
+    path(
+        "comment/<int:pk>/remove/",
+        comment_remove,
+        name="comment-remove",
     ),
 ]
 

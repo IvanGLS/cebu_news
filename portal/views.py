@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.shortcuts import render, redirect, get_object_or_404
@@ -7,7 +9,7 @@ import textwrap
 
 from django.views.generic.edit import FormMixin
 
-from .models import News, Redactor
+from .models import News, Redactor, Comments
 from .forms import (NewsSearchForm,
                     NewsForm,
                     CommentsForm,
@@ -87,3 +89,21 @@ class NewsUpdateView(LoginRequiredMixin, generic.UpdateView):
 class RedactorDetailView(generic.DetailView):
     model = Redactor
     queryset = Redactor.objects.all().prefetch_related("news")
+
+
+class NewsDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = News
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy(
+            "portal:user-detail",
+            kwargs={"pk": self.request.user.id}
+        )
+
+
+@login_required
+def comment_remove(request, pk):
+    news_id = Comments.objects.get(pk=pk).post.id
+    if request.user == Comments.objects.get(pk=pk).user:
+        Comments(id=pk).delete()
+    return HttpResponseRedirect(reverse_lazy("portal:news-detail", args=[news_id]))

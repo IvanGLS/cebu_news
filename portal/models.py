@@ -6,6 +6,7 @@ from django.db import models
 
 class Redactor(AbstractUser):
     image = models.ImageField(upload_to="media/%Y/%m/%d/", null=True)
+    bio = models.CharField(max_length=255, null=True)
     years_of_experience = models.IntegerField(
         default=1,
         validators=[
@@ -24,6 +25,9 @@ class Redactor(AbstractUser):
 class Category(models.Model):
     category = models.CharField(max_length=20, unique=True)
 
+    def __str__(self):
+        return self.category
+
 
 class News(models.Model):
     title = models.CharField(max_length=64)
@@ -33,7 +37,7 @@ class News(models.Model):
     most_popular = models.BooleanField(default=False)
     publishers = models.ForeignKey(Redactor,
                                    on_delete=models.CASCADE,
-                                   )
+                                   related_name="news")
     category = models.ForeignKey(Category,
                                  on_delete=models.CASCADE,
                                  )

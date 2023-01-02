@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.template import loader
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.shortcuts import render, redirect, get_object_or_404
@@ -107,3 +108,8 @@ def comment_remove(request, pk):
     if request.user == Comments.objects.get(pk=pk).user:
         Comments(id=pk).delete()
     return HttpResponseRedirect(reverse_lazy("portal:news-detail", args=[news_id]))
+
+
+def Errorhandler404(request, exception):
+    content = loader.render_to_string('portal/../templates/404.html', {}, request)
+    return HttpResponseNotFound(content)

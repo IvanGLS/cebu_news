@@ -38,7 +38,7 @@
               <div class="text">
                   <h2><a href="{% url 'portal:news-detail' pk=news.id %}" title="title">{{ news.title }}</a></h2>
                   <div class="tag">
-                      <span class="lable">Social</span>
+                      <span class="lable">{{ news.category.category }}</span>
                       <p class="date"><i class="fa fa-clock-o"></i>{{ news.published_date }}</p>
                       <a class="comments" title="comments"><i class="fa fa-comments"></i>{{ news.comments.count }}</a>
                   </div>

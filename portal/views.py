@@ -110,6 +110,6 @@ def comment_remove(request, pk):
     return HttpResponseRedirect(reverse_lazy("portal:news-detail", args=[news_id]))
 
 
-def Errorhandler404(request, exception):
-    content = loader.render_to_string('portal/../templates/404.html', {}, request)
+def errorhandler404(request, exception):
+    content = loader.render_to_string("404.html", {}, request)
     return HttpResponseNotFound(content)

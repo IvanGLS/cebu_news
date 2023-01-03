@@ -3,13 +3,13 @@ from django.urls import path
 
 from .views import (
     comment_remove,
+    errorhandler404,
     NewsListView,
     NewsDetailView,
     RedactorDetailView,
     NewsCreateView,
     NewsUpdateView,
     NewsDeleteView,
-    Errorhandler404,
 )
 
 
@@ -40,7 +40,7 @@ urlpatterns = [
         comment_remove,
         name="comment-remove",
     ),
-    path("404/", Errorhandler404),
+    path("404/", errorhandler404),
 ]
 
 app_name = "portal"

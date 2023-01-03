@@ -1,5 +1,8 @@
-Cebu city site
+# Cebu city site
 News source project with Django
+
+## Check it out!
+[News project deployed to Render](https://cebusite.onrender.com/)
 
 ## Installation
 

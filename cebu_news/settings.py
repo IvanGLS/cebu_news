@@ -137,7 +137,15 @@ MEDIA_URL = "/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+DEFAULT_FILE_STORAGE = os.environ.get("dropbox_img.py", "django.core.files.storage.FileSystemStorage")
+DROPBOX_OAUTH2_TOKEN = os.environ.get("sl.BWa9iO9RI5HmHHi6r7O8_LabFKV45vGXsETAQEL0yJtf6tEIgbN5Gc6MekWAMIQGUHeHC9rFZmYoDMAvjWi61-pDl1vG6dc9U5Q9Jun9GgdkqH4-XXo1RySKik0FzMCADrQYHsA")
+DROPBOX_APP_KEY = os.environ.get("0yrpnvvd4cer78h")
+DROPBOX_APP_SECRET = os.environ.get("48t4uqhnvv4cr31")
+DROPBOX_OAUTH2_REFRESH_TOKEN = os.environ.get("vy_f2lsu1_EAAAAAAAAAFy7gnELA3RVSAvR9iZPsEYI")
+DROPBOX_ROOT_PATH = "/"

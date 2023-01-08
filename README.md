@@ -4,6 +4,11 @@ News source project with Django
 ## Check it out!
 [News project deployed to Render](https://cebusite.onrender.com/)
 
+## Demo User Test
+
+* login: DemoUser
+* password: Test12345
+
 ## Installation
 
 1. git clone https://github.com/IvanGLS/cebu_news

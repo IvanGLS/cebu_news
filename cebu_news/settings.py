@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #os.environ.get("DJANGO_DEBUG", "") != "False"
+DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 ALLOWED_HOSTS = ["127.0.0.1", "cebusite.onrender.com"]
 
@@ -143,8 +143,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DEFAULT_FILE_STORAGE = "cebu_news.dropbox_img.DropboxStorage"
-DROPBOX_OAUTH2_TOKEN = "sl.BWa9iO9RI5HmHHi6r7O8_LabFKV45vGXsETAQEL0yJtf6tEIgbN5Gc6MekWAMIQGUHeHC9rFZmYoDMAvjWi61-pDl1vG6dc9U5Q9Jun9GgdkqH4-XXo1RySKik0FzMCADrQYHsA"
+DROPBOX_OAUTH2_TOKEN = "sl.BWej1sJ_SwxTaGOdNAhRFKxEdnoiPUm8PMObCyAayr0nsr0odjAvJ7qLk6P8sfuh_wVxtOwdBEq4UQvzgYphAUFxwd1994k7pEGQ4gsZJEaDJEDKP9pEOd55vnjsxLNXvGyEfmI"
 DROPBOX_APP_KEY = "0yrpnvvd4cer78h"
 DROPBOX_APP_SECRET = "48t4uqhnvv4cr31"
-DROPBOX_OAUTH2_REFRESH_TOKEN = "vy_f2lsu1_EAAAAAAAAAFy7gnELA3RVSAvR9iZPsEYI"
+DROPBOX_OAUTH2_REFRESH_TOKEN = "hAmFDS_eA1IAAAAAAAAAAduatIXDsfN6fFxI8QMa67n-jza226iOW3px6eEcPuuA"
 DROPBOX_ROOT_PATH = "/"

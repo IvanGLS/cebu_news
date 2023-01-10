@@ -16,14 +16,14 @@
                 <img class="img-circle img-user" src="{{ request.user.image.url }}" alt="images">
                 <h3>Current User :</h3>
                 <p>{{ request.user.username }}</p>
-                <a href="{% url "portal:redactor-detail" pk=request.user.id %}" class="btn">
+                <a href="{% url "portal:redactor-detail" pk=request.user.id %}" class="btn btn-primary">
                 User panel
                 </a>
-                <a href="{% url "logout" %}" class="btn">
+                <a href="{% url "logout" %}" class="btn btn-success">
                 logout
                 </a>
               {% else %}
-                <a href="{% url "login" %}">login</a>
+                <a href="{% url "login" %}" class="btn btn-primary link-to-page">login</a>
               {% endif %}
             </div>
             <div class="float-right">

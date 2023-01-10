@@ -3,7 +3,7 @@
 
 {% block content %}
   {% load static %}
-<div class="col-md-8">
+<div class="col-md-12">
   <ul class="breadcrumb">
   <li><a href="/">Home</a></li>
   <li class="active">Archive by "{{ redactor.username }}"</li>
@@ -31,6 +31,7 @@
         <div class="row">
           <div class="row col-md-8">
             {% for news in redactor.news.all %}
+              <article class="col-md-6 home3-slideshow">
               <div class="post-item ver3 cat-1 overlay space-30 redactor-news">
                 <div class="wrap-images">
                   <a class="images" href="{% url 'portal:news-detail' pk=news.id %}" title="images"><img class='img-responsive' src="{{ news.image.url }}" alt="images"></a>
@@ -55,8 +56,30 @@
                       {% endif %}
                   </div>
               </div>
+              </article>
               {% endfor %}
         </div>
+        <div class="col-md-4">
+            <aside class="widget popular">
+            <h3 class="widget-title">Popular news by {{ redactor.username }}</h3>
+            <div class="content">
+                {% for news in redactor.news.all %}
+                   {% if news.most_popular %}
+                <div class="post-item ver2">
+                    <a class="images" href="{% url 'portal:news-detail' pk=news.id %}" title="images">
+                      <img class='img-responsive' src="{{ news.image.url }}" alt="images"></a>
+                    <div class="text">
+                        <h2><a href="" title="title">{{ news.title }}</a></h2>
+                        <div class="tag">
+                          <p>{{ news.content|truncatewords:5 }}</p>
+                        </div>
+                    </div>
+                </div>
+                  {% endif %}
+                {% endfor %}
+            </div>
+            </aside>
+          </div>
       </div>
     </div>
   </div>

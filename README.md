@@ -16,9 +16,15 @@ News source project with Django
 3. venv\Scripts\activate (on Windows)
 source venv/bin/activate (on macOS)
 4. pip install -r requirements.txt
-5. python manage.py makemigrations
-6. python manage.py migrate
-7. python manage.py runserver
+5. python manage.py migrate
+6. python manage.py runserver
+
+## Env variables configuration
+db_from_env - PostgreSQL database settings
+(DROPBOX_OAUTH2_TOKEN,
+DROPBOX_APP_KEY,
+DROPBOX_APP_SECRET,
+DROPBOX_OAUTH2_REFRESH_TOKEN) - settings from dropbox.com for host images
 
 ## Features
 

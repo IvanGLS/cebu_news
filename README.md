@@ -20,11 +20,11 @@ source venv/bin/activate (on macOS)
 6. python manage.py runserver
 
 ## Env variables configuration
-db_from_env - PostgreSQL database settings
-(DROPBOX_OAUTH2_TOKEN,
-DROPBOX_APP_KEY,
-DROPBOX_APP_SECRET,
-DROPBOX_OAUTH2_REFRESH_TOKEN) - settings from dropbox.com for host images
+* db_from_env - PostgreSQL database settings
+* DROPBOX_OAUTH2_TOKEN - settings from dropbox.com
+* DROPBOX_APP_KEY - settings from dropbox.com
+* DROPBOX_APP_SECRET - settings from dropbox.com
+* DROPBOX_OAUTH2_REFRESH_TOKEN - settings from dropbox.com for host images
 
 ## Features
 

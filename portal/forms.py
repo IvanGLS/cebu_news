@@ -8,6 +8,8 @@ from portal.models import News, Comments
 
 
 class NewsForm(forms.ModelForm):
+    content = forms.CharField(widget=forms.Textarea)
+
     class Meta:
         model = News
         exclude = ["publishers"]

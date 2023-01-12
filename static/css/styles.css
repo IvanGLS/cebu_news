@@ -18549,3 +18549,16 @@ h2 {
 .form-details{
  font-size: x-large;
 }
+
+.link-to-page, .btn-success, .btn-primary{
+  z-index: 99999;
+  position: relative;
+}
+
+.login-form textarea, .login-form select {
+    padding: 10px;
+    background-color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    border: 1px solid #e1e1e1;
+}

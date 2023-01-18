@@ -89,7 +89,7 @@ class NewsUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class RedactorDetailView(generic.DetailView):
     model = Redactor
-    queryset = Redactor.objects.all().prefetch_related("news")
+    queryset = Redactor.objects.prefetch_related("news")
 
 
 class NewsDeleteView(LoginRequiredMixin, generic.DeleteView):

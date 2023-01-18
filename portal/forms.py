@@ -30,6 +30,7 @@ class CommentsForm(forms.ModelForm):
         content = forms.CharField(widget=forms.Textarea(), label='')
         fields = ("content",)
 
+
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)
     #     for field in self.fields:

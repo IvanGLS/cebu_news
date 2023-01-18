@@ -27,7 +27,7 @@ class NewsSearchForm(forms.Form):
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comments
-        content = forms.CharField(widget=forms.Textarea(), label='')
+        content = forms.CharField(widget=forms.Textarea(attrs={"rows": 7}), label=None)
         fields = ("content",)
 
 

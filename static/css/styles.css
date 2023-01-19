@@ -18465,6 +18465,8 @@ h2 {
   z-index: 99999;
   position: relative;
   padding-top: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
 .login-form textarea, .login-form select {

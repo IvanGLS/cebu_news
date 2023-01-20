@@ -18464,9 +18464,7 @@ h2 {
 .link-to-page, .btn-success, .btn-primary{
   z-index: 99999;
   position: relative;
-  padding-top: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 5px;
 }
 
 .login-form textarea, .login-form select {

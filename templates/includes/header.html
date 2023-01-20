@@ -16,10 +16,10 @@
                 <img class="img-circle img-user" src="{{ request.user.image.url }}" alt="images">
                 <h3>Current User :</h3>
                 <p>{{ request.user.username }}</p>
-                <a href="{% url "portal:redactor-detail" pk=request.user.id %}" class="btn btn-success">
+                <a href="{% url "portal:redactor-detail" pk=request.user.id %}" class="btn btn-success link-to-page">
                 User panel
                 </a>
-                <a href="{% url "logout" %}" class="btn btn-primary">
+                <a href="{% url "logout" %}" class="btn btn-primary link-to-page">
                 logout
                 </a>
               {% else %}

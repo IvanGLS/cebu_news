@@ -34,7 +34,7 @@ class NewsListView(generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = News.objects.all()
+        queryset = self.queryset
         form = NewsSearchForm(self.request.GET)
 
         if form.is_valid():

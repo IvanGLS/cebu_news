@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% load static %}
+  <div class="row">
+  <div class="row col-md-8">
+
+  {% if news_list %}
+      {% for news in news_list %}
+        <article class="col-md-6 home3-slideshow">
+          <div class="post-item cat-3 ver1 overlay">
+            <span class="lable">{{ news.category.category }}</span>
+          <a class="images" href="{% url 'portal:news-detail' pk=news.id %}" title="{{ news.title }}">
+            <img src="{{ news.image.url }}" alt="images">
+          </a>
+          <div class="text">
+            <h2><a href="{% url 'portal:news-detail' pk=news.id %}" title="{{ news.title }}">{{ news.title }}</a></h2>
+              <p class="description">{{ news.content|truncatewords:20 }}</p>
+            <div class="tag">
+                  <p class="date"><i class="fa fa-clock-o"></i>{{ news.published_date }}</p>
+                  <a class="comments" href="{% url 'portal:news-detail' pk=news.id %}#anchor comments" title="comments">
+                    <i class="fa fa-comments"></i>{{ news.comments.count }}</a>
+            </div>
+          </div>
+          </div>
+        </article>
+        {% endfor %}
+  {% else %}
+     <p>There are no any posts.</p>
+  {% endif %}
+</div>
+<div class="row col-md-4">
+  {% block sidebar %}
+  {% include "includes/sidebar.html" %}
+  {% endblock %}
+</div>
+</div>
+{% endblock %}

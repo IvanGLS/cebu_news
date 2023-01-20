@@ -1,0 +1,17 @@
+{% load query_transform %}
+{% if is_paginated %}
+{% endif %}
+<div class="box center float-left space-30">
+    <nav class="pagination">
+        {% if page_obj.has_previous %}
+        <a class="control prev" href="?{% query_transform request page=page_obj.previous_page_number %}" title="pre"><i class="fa fa-long-arrow-left"></i>Previous</a>
+        {% endif %}
+        <ul>
+            <li><a href="?{% query_transform request page=page_obj.number%}" title="{{page_obj.number}}">{{page_obj.number}}</a></li>
+        </ul>
+        {% if page_obj.has_next %}
+        <a class="control next" href="?{% query_transform request page=page_obj.next_page_number %}" title="next">Next<i class="fa fa-long-arrow-right"></i></a>
+        {% endif %}
+    </nav>
+    <!-- End pagination -->
+</div>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="page-login">
+  <h1>{{ object|yesno:"Update,Create" }} News</h1>
+  <form class="login-form" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" class="button">
+  </form>
+  </div>
+{% endblock %}
